@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Book Collection — Rails + Docker Compose (CSCE 431)
 
-Things you may want to cover:
+Minimal Rails app for **Book Collection 1**. You edit locally; Docker runs Rails and Postgres.
 
-* Ruby version
+## Prerequisites
+- Docker Desktop (or Docker Engine) with Compose v2
+- Git
 
-* System dependencies
+## Quick Start
+```bash
+docker compose up
+```
+Visit: http://127.0.0.1:3000
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If 3000 is busy on your machine, change the app port mapping to 3001:3000 in docker-compose.yml and browse to http://127.0.0.1:3001
+.
