@@ -15,15 +15,11 @@ services:
     volumes:
       - .:/csce431
     ports:
-      - "3000:3000"
+      - "3000:3000"   # change left side to 3001 if 3000 is busy
     depends_on:
       - db
-    # Bypass the image's entrypoint that tries to start its own PG + 'bin/bash'
-    entrypoint: ["/bin/bash","-lc"]
-    command: >
-      bundle install &&
-      bin/rails db:prepare &&
-      bin/rails s -b 0.0.0.0 -p 3000
+    entrypoint: ["/bin/bash","-lc"]   # <— override image entrypoint
+    command: "./docker-start.sh"      # <— run our script
 
 volumes:
   pgdata:
