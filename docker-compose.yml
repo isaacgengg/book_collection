@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    image: paulinewade/csce431:latest
+    working_dir: /csce431
+    volumes:
+      - .:/csce431
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    # Bypass the image's entrypoint that tries to start its own PG + 'bin/bash'
+    entrypoint: ["/bin/bash","-lc"]
+    command: >
+      bundle install &&
+      bin/rails db:prepare &&
+      bin/rails s -b 0.0.0.0 -p 3000
+
+volumes:
+  pgdata:
