@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>User Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Book Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_books.each do |ub| %>
+      <tr id="<%= dom_id(ub) %>">
+        <td><%= ub.user&.username %></td>
+        <td><%= ub.book&.title %></td>
+        <td>
+          <%= link_to "Show", ub %>
+          <%= link_to "Edit", edit_user_book_path(ub) %>
+          <%= link_to "Destroy", ub, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "New User Book", new_user_book_path %><br>
+  <%= link_to "Book index", books_path %><br>
+  <%= link_to "User index", users_path %>
+</p>
